@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="cubicle-main">
+    <div class="cubicle-box">
+      <h4>Cubicle A1</h4>
+      <div class="cubicle">
+        <div class="cell" dndDropzone (dndDragover)="onDragover($event)" (dndDrop)="onDrop($event,item.id)"
+          *ngFor="let item of cubicles" [ngClass]="{'cell-on' : item.data.name!==''}">
+          <span class="filled-cell">{{item.data.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scan-container">
+    <app-qr-code-scanner (onScan)="handleQrCodeList($event)"></app-qr-code-scanner>
+    <div class="scanned-results">
+      <div class="qr-scanned-cell" *ngFor="let item of options" [dndDraggable]="item">
+        {{ item.value }} - {{ item.name }}
+      </div>
+    </div>
+  </div>
+  <div class="button-group">
+    <button (click)="(handleApplyButton($event))">Apply</button>
+  </div>
+</div>
